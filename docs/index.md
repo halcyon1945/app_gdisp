@@ -1,37 +1,48 @@
-## Welcome to GitHub Pages
+# Gdisp APP
 
-You can use the [editor on GitHub](https://github.com/halcyon1945/app_gdisp/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+![axis](./pics/ss1.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Objective / 目的
 
-### Markdown
+Easy and simple to get longitudinal and lateral acceleration.(縦・横方向の加速度を簡単・シンプルに得ることができます)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Feature / 機能
 
-```markdown
-Syntax highlighted code block
+- Large text display for video logging
+- LowPassFilter
+- Zero offset
 
-# Header 1
-## Header 2
-### Header 3
+## How to use / 使い方
 
-- Bulleted
-- List
+### Clock / 時計
 
-1. Numbered
-2. List
+- simple clock.
+- time zone is depend on your device setting.
 
-**Bold** and _Italic_ and `Code` text
+### Acceleration / 加速度
 
-[Link](url) and ![Image](src)
-```
+- This App display acceleration value with 2 axis.
+- No coordinate transformation.
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+![axis](./pics/axis.png)
 
-### Jekyll Themes
+### Zero buttom / 0点オフセットボタン
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/halcyon1945/app_gdisp/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- Set the current value to the zero point of the measurement.
+- Push when Unmoving, calm situation.
+- its just offset no coordinate transformation.
+
+### LPF buttom / ローパスフィルタボタン
+
+- Using a first-order filter.
+- 3.0Hz filter means 0.3sec at 63% response.
+
+### B/W buttom / 背景色ボタン
+
+- change background color
+![axis](./pics/ss1.png)
+![axis](./pics/ss2.png)
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Having trouble with APP? Check out [QA Form .](https://forms.gle/8qG3hEu8UAZsDXZX9)
