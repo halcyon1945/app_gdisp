@@ -10,9 +10,10 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 
 ## Feature / 機能
 
+- Clock and 2-axis acceleration indicator (時刻表示と加速度表示)
 - Large text display for video logging (ビデオ撮影のための大型文字)
 - LowPassFilter (ローパスフィルタ)
-- Zero offset（ゼロ点ボタン）
+- Zero offset buttom（ゼロ点ボタン）
 
 ## How to use / 使い方
 
