@@ -49,6 +49,11 @@ class ViewController: UIViewController {
     var K_now:Double  = 0.0295
     var K_post:Double = 0.9705
     
+    let th_font_red:Double=1.50
+    let th_hys_font_red:Double=0.10
+    
+    let gravi_const:Double=9.80665
+    
     
     // LPF setting
     @IBAction func lpf_change(_ sender: Any) {
@@ -190,18 +195,18 @@ class ViewController: UIViewController {
         
         if  self.motionManager.isAccelerometerAvailable {
             if let data = self.motionManager.accelerometerData {
-               raw_x = data.acceleration.x * 9.8
-               raw_y = data.acceleration.y * 9.8
-               raw_z = data.acceleration.z * 9.8
+               raw_x = data.acceleration.x * gravi_const
+               raw_y = data.acceleration.y * gravi_const
+               raw_z = data.acceleration.z * gravi_const
             
                }
         }
         /*
         if  self.motionManager.isDeviceMotionAvailable {
             if let data = self.motionManager.deviceMotion {
-                raw_x = data.userAcceleration.x * 9.8
-                raw_y = data.userAcceleration.y * 9.8
-                raw_z = data.userAcceleration.z * 9.8
+                raw_x = data.userAcceleration.x * gravi_const
+                raw_y = data.userAcceleration.y * gravi_const
+                raw_z = data.userAcceleration.z * gravi_const
             
                }
         }
@@ -234,13 +239,13 @@ class ViewController: UIViewController {
     
         disp_x = app_x - offsetx
         Lleft.text=String(format:"%03.2f",disp_x)
-        if((br_x == true)&&(disp_x <= -2.00))
+        if((br_x == true)&&(disp_x <= -1 * th_font_red))
         {
             br_x = false
-        }else if((br_x == false)&&(disp_x > -1.9)&&(disp_x < 1.9))
+        }else if((br_x == false)&&(disp_x > -1 * (th_font_red - th_hys_font_red))&&(disp_x < (th_font_red - th_hys_font_red)))
         {
             br_x = true
-        }else if((br_x == true)&&(disp_x >= 2.00))
+        }else if((br_x == true)&&(disp_x >= th_font_red))
         {
             br_x = false
         }else{
@@ -261,13 +266,13 @@ class ViewController: UIViewController {
         disp_y = app_y - offsety
         Lright.text=String(format:"%03.2f",disp_y)
 
-        if((br_y == true)&&(disp_y <= -2.0))
+        if((br_y == true)&&(disp_y <= -1*th_font_red))
         {
             br_y = false
-        }else if((br_y == false)&&(disp_y > -1.9)&&(disp_y < 1.9))
+        }else if((br_y == false)&&(disp_y > -1.4)&&(disp_y < 1.4))
         {
             br_y = true
-        }else if((br_y == true)&&(disp_y >= 2.00))
+        }else if((br_y == true)&&(disp_y >= th_font_red))
         {
             br_y = false
         }else{
@@ -289,13 +294,13 @@ class ViewController: UIViewController {
         disp_z = app_z - offsetz
         Ltop.text=String(format:"%03.2f",disp_z)
         
-        if((br_z == true)&&(disp_z <= -2.00))
+        if((br_z == true)&&(disp_z <= -1*th_font_red))
         {
             br_z = false
-        }else if((br_z == false)&&(disp_z > -1.9)&&(disp_z < 1.9))
+        }else if((br_z == false)&&(disp_z > -1*(th_font_red - th_hys_font_red))&&(disp_z < (th_font_red - th_hys_font_red)))
         {
             br_z = true
-        }else if((br_z == true)&&(disp_z >= 2.00))
+        }else if((br_z == true)&&(disp_z >= th_font_red))
         {
             br_z = false
         }else{
