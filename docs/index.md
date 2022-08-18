@@ -43,7 +43,8 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 
 ### B/W buttom / 背景色ボタン
 
-- change background color（背景色変更）
+- Change background color（背景色変更）
+- Font change to Red when over +1.5 or under -1.5 m/s2 (±1.5m/s2を超えると赤文字)
 
 ![ss1](./pics/ss1.png) 
 
