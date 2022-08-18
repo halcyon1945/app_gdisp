@@ -2,7 +2,7 @@
 
 <strong>You can get at App Store for iPhone/iPad ( iOS 15.5 ) </strong>
 
-![axis](../icon/120.png)
+![icon](https://github.com/halcyon1945/app_gdisp/blob/main/icon/120.png?raw=true)
 
 ## Objective / 目的
 
@@ -45,9 +45,9 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 
 - change background color（背景色変更）
 
-<kbd>![axis](./pics/ss1.png)</kbd>
+![ss1](./pics/ss1.png) 
 
-<kbd>![axis](./pics/ss2.png)</kbd>
+![ss2](./pics/ss2.png) 
 
 ## Tips / 利用上の注意
 
@@ -55,15 +55,15 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 
 * When using the device, please fix the entire smartphone firmly in place (しっかりと固縛してください)
 
-<kbd> ![axis2](./pics/axis2.jpg) </kbd> 
+![axis2](./pics/axis2.jpg) 
 
 * White background longitudinal acceleration test (白背景での使用例)
 
-<kbd> ![test](./pics/test1.jpg) </kbd>
+![test1](./pics/test1.jpg) 
 
 * Black background longitudinal acceleration test (黒背景での使用例)
 
-<kbd> ![test](./pics/test2.jpg) </kbd>
+![test2](./pics/test2.jpg) 
 
 ## Support or Contact
 
