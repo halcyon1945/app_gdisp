@@ -234,13 +234,19 @@ class ViewController: UIViewController {
     
         disp_x = app_x - offsetx
         Lleft.text=String(format:"%03.2f",disp_x)
-        if((br_x == true)&&(disp_x < -0.01))
+        if((br_x == true)&&(disp_x <= -2.00))
         {
             br_x = false
-        }else if((br_x == false)&&(disp_x > 0.01))
+        }else if((br_x == false)&&(disp_x > -1.9)&&(disp_x < 1.9))
         {
             br_x = true
+        }else if((br_x == true)&&(disp_x >= 2.00))
+        {
+            br_x = false
+        }else{
+            // br_x stay itself
         }
+        
         if(br_x == true){
             if(bw_sw.isOn == false){
                 Lleft.textColor=UIColor.black
@@ -255,13 +261,21 @@ class ViewController: UIViewController {
         disp_y = app_y - offsety
         Lright.text=String(format:"%03.2f",disp_y)
 
-        if((br_y == true)&&(disp_y < -0.01))
+        if((br_y == true)&&(disp_y <= -2.0))
         {
             br_y = false
-        }else if((br_y == false)&&(disp_y > 0.01))
+        }else if((br_y == false)&&(disp_y > -1.9)&&(disp_y < 1.9))
         {
             br_y = true
+        }else if((br_y == true)&&(disp_y >= 2.00))
+        {
+            br_y = false
+        }else{
+            // br_y stay itself
         }
+        
+        
+        
         if(br_y == true){
             if(bw_sw.isOn == false){
                 Lright.textColor=UIColor.black
@@ -275,13 +289,19 @@ class ViewController: UIViewController {
         disp_z = app_z - offsetz
         Ltop.text=String(format:"%03.2f",disp_z)
         
-        if((br_z == true)&&(disp_z < -0.01))
+        if((br_z == true)&&(disp_z <= -2.00))
         {
             br_z = false
-        }else if((br_z == false)&&(disp_z > 0.01))
+        }else if((br_z == false)&&(disp_z > -1.9)&&(disp_z < 1.9))
         {
             br_z = true
+        }else if((br_z == true)&&(disp_z >= 2.00))
+        {
+            br_z = false
+        }else{
+            // br_z stay itself
         }
+        
         if(br_z == true){
             if(bw_sw.isOn == false){
                 Ltop.textColor=UIColor.black
