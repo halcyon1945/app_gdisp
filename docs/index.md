@@ -13,7 +13,7 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 - Clock and 2-axis acceleration indicator (時刻表示と加速度表示)
 - Large text display for video logging (ビデオ撮影のための大型文字)
 - LowPassFilter (ローパスフィルタ)
-- Zero offset buttom（ゼロ点ボタン）
+- Zero offset button（ゼロ点ボタン）
 
 ## How to use / 使い方
 
@@ -29,19 +29,19 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 
 ![axis](./pics/axis.png)
 
-### Zero buttom / 0点オフセットボタン
+### Zero button / 0点オフセットボタン
 
 - Set the current value to the zero point of the measurement（水平で静止中にゼロ点ボタンを押してください）
 - Push when Unmoving, calm situation
 - its just offset no coordinate transformation
 
-### LPF buttom / ローパスフィルタボタン
+### LPF button / ローパスフィルタボタン
 
 - Using a first-order filter（1次の離散ローパスフィルタ）
 - 100Hz internal calculation（内部は100Hzで計算）
 - 3.0Hz filter means 0.3sec at 63% response（3Hz=63%応答が0.3sec）
 
-### B/W buttom / 背景色ボタン
+### B/W button / 背景色ボタン
 
 - Change background color（背景色変更）
 - Font change to Red when over +1.5 or under -1.5 m/s2 (±1.5m/s2を超えると赤文字)
