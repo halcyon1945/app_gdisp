@@ -1,6 +1,7 @@
 # Gdisp APP
 
 <strong>You can get at App Store for iPhone/iPad ( iOS 15.5 ) </strong>
+[https://apps.apple.com/app/gdisp/id1639827054](https://apps.apple.com/app/gdisp/id1639827054)
 
 ![icon](https://github.com/halcyon1945/app_gdisp/blob/main/icon/120.png?raw=true)
 
