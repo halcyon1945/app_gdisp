@@ -53,7 +53,7 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 
 ## Tips / 利用上の注意
 
-* The zero point should be adjusted frequently (ゼロ点は頻繁に調整してください。)
+* The zero point should be adjusted every static condition (ゼロ点は静止する度に調整してください。)
 
 * When using the device, please fix the entire smartphone firmly in place (しっかりと固縛してください)
 
