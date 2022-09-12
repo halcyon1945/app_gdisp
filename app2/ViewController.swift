@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var v2: UIView!
     @IBOutlet weak var fb: UILabel!
     @IBOutlet weak var lr: UILabel!
-
+    
     @IBOutlet var bg: UIView!
     @IBOutlet weak var reset: UIButton!
     @IBOutlet weak var lpf_val: UISegmentedControl!
@@ -49,6 +49,7 @@ class ViewController: UIViewController {
     var K_now:Double  = 0.0295
     var K_post:Double = 0.9705
     
+
     let th_font_red:Double=1.50
     let th_hys_font_red:Double=0.10
     
@@ -234,9 +235,10 @@ class ViewController: UIViewController {
         var disp_z: Double=0
 
         // DateFormatter for local
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "Hms", options: 0, locale: Locale(identifier: localeid))
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dMMMMMHHmmss", options: 0, locale: Locale(identifier: localeid))
         time.text = dateFormatter.string(from: dt)
-    
+
+
         disp_x = app_x - offsetx
         Lleft.text=String(format:"%03.2f",disp_x)
         if((br_x == true)&&(disp_x <= -1 * th_font_red))
