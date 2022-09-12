@@ -22,6 +22,7 @@ Easy and simple to get longitudinal and lateral acceleration (縦横の加速度
 
 - Simple clock（時計表示）
 - Time zone is depend on your device setting（時差は端末設定依存）
+- Single letter month abbreviations and day display（1文字略語の月表示と日表示）
 
 ### Acceleration / 加速度
 
