@@ -74,7 +74,7 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         print("Ad did dismiss full screen content.")
         let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-9181296403272159/7497939119",
+        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-9181296403272159/5298692048",
                                request: request,
                                completionHandler: { [self] ad, error in
             if let error = error {
@@ -124,7 +124,7 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
         // Do any additional setup after loading the view.
         bg_black()
         let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID: "ca-app-pub-9181296403272159/7497939119",
+        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-9181296403272159/5298692048",
                                request: request,
                                completionHandler: { [self] ad, error in
             if let error = error {
