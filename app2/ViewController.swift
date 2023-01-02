@@ -7,9 +7,11 @@
 
 import UIKit
 import CoreMotion
+import GoogleMobileAds
 
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController, GADFullScreenContentDelegate{
     @IBOutlet weak var Lright: UILabel!
     @IBOutlet weak var Lleft: UILabel!
     @IBOutlet weak var Ltop: UILabel!
@@ -25,6 +27,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var reset: UIButton!
     @IBOutlet weak var lpf_val: UISegmentedControl!
     
+    private var interstitial: GADInterstitialAd?
+    
+    
     let motionManager = CMMotionManager()
     var timer: Timer!
     var timer_disp: Timer!
@@ -32,7 +37,7 @@ class ViewController: UIViewController {
     var post_x:Double=0
     var post_y:Double=0
     var post_z:Double=0
-
+    
     var offsetx:Double=0
     var offsety:Double=0
     var offsetz:Double=0
@@ -49,12 +54,38 @@ class ViewController: UIViewController {
     var K_now:Double  = 0.0295
     var K_post:Double = 0.9705
     
-
+    
     let th_font_red:Double=1.50
     let th_hys_font_red:Double=0.10
     
     let gravi_const:Double=9.80665
     
+    /// Tells the delegate that the ad failed to present full screen content.
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("Ad did fail to present full screen content.")
+    }
+    
+    /// Tells the delegate that the ad will present full screen content.
+    func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad will present full screen content.")
+    }
+    
+    /// Tells the delegate that the ad dismissed full screen content.
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad did dismiss full screen content.")
+        let request = GADRequest()
+        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-9181296403272159/7497939119",
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+            interstitial?.fullScreenContentDelegate = self
+        }
+        )
+    }
     
     // LPF setting
     @IBAction func lpf_change(_ sender: Any) {
@@ -74,55 +105,71 @@ class ViewController: UIViewController {
     
     
     @IBAction func bw(_ sender: Any) {
-    
+        
         if(bw_sw.isOn == true){
             bg_black()
         }else{
             bg_white()
         }
-
+        if interstitial != nil {
+            interstitial?.present(fromRootViewController: self)
+        } else {
+            print("Ad wasn't ready")
+        }
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         bg_black()
-      }
-
+        let request = GADRequest()
+        GADInterstitialAd.load(withAdUnitID: "ca-app-pub-9181296403272159/7497939119",
+                               request: request,
+                               completionHandler: { [self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            interstitial = ad
+            interstitial?.fullScreenContentDelegate = self
+        }
+        )
+    }
+    
     // apper
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if motionManager.isAccelerometerAvailable {
-           motionManager.accelerometerUpdateInterval = 0.01
-           motionManager.startAccelerometerUpdates()
+            motionManager.accelerometerUpdateInterval = 0.01
+            motionManager.startAccelerometerUpdates()
         }
         if motionManager.isDeviceMotionAvailable{
             // motionManager.deviceMotionUpdateInterval = 0.01
             // motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical)
         }
         startTimer()
-
+        
     }
-
+    
     // disapper
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if motionManager.isDeviceMotionAvailable{
-           motionManager.stopDeviceMotionUpdates()
-           }
+            motionManager.stopDeviceMotionUpdates()
+        }
         timer.invalidate()
     }
     
-
+    
     @IBAction func zeroset(_ sender: Any) {
-//        Thread.sleep(forTimeInterval: 0.5)
+        //        Thread.sleep(forTimeInterval: 0.5)
         reset_axis()
     }
     
     func reset_axis(){
-
+        
         offsetx=post_x
         offsety=post_y
         offsetz=post_z
@@ -130,7 +177,7 @@ class ViewController: UIViewController {
     }
     
     func bg_black(){
-
+        
         v1.backgroundColor = UIColor.black
         v2.backgroundColor = UIColor.black
         fb.backgroundColor = UIColor.black
@@ -149,7 +196,7 @@ class ViewController: UIViewController {
         
     }
     func bg_white(){
-
+        
         v1.backgroundColor = UIColor.white
         v2.backgroundColor = UIColor.white
         fb.backgroundColor = UIColor.white
@@ -167,7 +214,7 @@ class ViewController: UIViewController {
         Lleft.textColor = UIColor.black
         
     }
-
+    
     func startTimer() {
         timer = Timer.scheduledTimer(
             timeInterval: 0.01,
@@ -183,7 +230,7 @@ class ViewController: UIViewController {
             userInfo: nil,
             repeats: true)
     }
- 
+    
     
     @objc func filttimer() {
         
@@ -191,26 +238,26 @@ class ViewController: UIViewController {
         var raw_x: Double=0
         var raw_y: Double=0
         var raw_z: Double=0
-
-
+        
+        
         
         if  self.motionManager.isAccelerometerAvailable {
             if let data = self.motionManager.accelerometerData {
-               raw_x = data.acceleration.x * gravi_const
-               raw_y = data.acceleration.y * gravi_const
-               raw_z = data.acceleration.z * gravi_const
-            
-               }
+                raw_x = data.acceleration.x * gravi_const
+                raw_y = data.acceleration.y * gravi_const
+                raw_z = data.acceleration.z * gravi_const
+                
+            }
         }
         /*
-        if  self.motionManager.isDeviceMotionAvailable {
-            if let data = self.motionManager.deviceMotion {
-                raw_x = data.userAcceleration.x * gravi_const
-                raw_y = data.userAcceleration.y * gravi_const
-                raw_z = data.userAcceleration.z * gravi_const
-            
-               }
-        }
+         if  self.motionManager.isDeviceMotionAvailable {
+         if let data = self.motionManager.deviceMotion {
+         raw_x = data.userAcceleration.x * gravi_const
+         raw_y = data.userAcceleration.y * gravi_const
+         raw_z = data.userAcceleration.z * gravi_const
+         
+         }
+         }
          */
         
         app_x = K_now * raw_x + K_post * post_x
@@ -218,7 +265,7 @@ class ViewController: UIViewController {
         app_z = K_now * raw_z + K_post * post_z
         
         
-
+        
         post_x = app_x
         post_y = app_y
         post_z = app_z
@@ -233,12 +280,12 @@ class ViewController: UIViewController {
         var disp_x: Double=0
         var disp_y: Double=0
         var disp_z: Double=0
-
+        
         // DateFormatter for local
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dMMMMMHHmmss", options: 0, locale: Locale(identifier: localeid))
         time.text = dateFormatter.string(from: dt)
-
-
+        
+        
         disp_x = app_x - offsetx
         Lleft.text=String(format:"%03.2f",disp_x)
         if((br_x == true)&&(disp_x <= -1 * th_font_red))
@@ -267,7 +314,7 @@ class ViewController: UIViewController {
         
         disp_y = app_y - offsety
         Lright.text=String(format:"%03.2f",disp_y)
-
+        
         if((br_y == true)&&(disp_y <= -1*th_font_red))
         {
             br_y = false
@@ -292,7 +339,7 @@ class ViewController: UIViewController {
         }else{
             Lright.textColor=UIColor.red
         }
- 
+        
         disp_z = app_z - offsetz
         Ltop.text=String(format:"%03.2f",disp_z)
         
@@ -314,14 +361,14 @@ class ViewController: UIViewController {
                 Ltop.textColor=UIColor.black
             }else{
                 Ltop.textColor=UIColor.white
-                }
+            }
         }else{
             Ltop.textColor=UIColor.red
         }
         
     }
- 
- 
+    
+    
     
 }
 
