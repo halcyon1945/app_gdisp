@@ -110,11 +110,11 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
             bg_black()
         }else{
             bg_white()
-        }
-        if interstitial != nil {
-            interstitial?.present(fromRootViewController: self)
-        } else {
-            print("Ad wasn't ready")
+            if interstitial != nil {
+                interstitial?.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
         }
     }
     
