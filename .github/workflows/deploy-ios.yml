@@ -1,0 +1,38 @@
+
+name: iOS Deploy to TestFlight
+
+on:
+  push:
+    branches:
+      - main # mainブランチにプッシュされたら自動起動（お好みのブランチに変えてもOKです）
+
+jobs:
+  deploy:
+    runs-on: macos-14 # Apple Silicon (M1) 環境の最新Macを指定
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 1. 適切なXcodeバージョンを選択（末尾のパスまで必須）
+      - name: Select Xcode Version
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+
+      # 2. 証明書Gitへのアクセスを許可するためSSH鍵を設定（※必要に応じて）
+      # もしmatchリポジトリが一般公開されていない場合は、ここへの鍵設定かPersonal Access Tokenが必要になります。
+
+      # 3. Ruby環境のセットアップ
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundle-cache: true
+
+      # 4. Fastlaneの実行
+      - name: Run Fastlane
+        env:
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        run: bundle exec fastlane release_to_app_store
