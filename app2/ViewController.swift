@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 
 
-class ViewController: UIViewController, GADFullScreenContentDelegate{
+class ViewController: UIViewController, FullScreenContentDelegate{
     @IBOutlet weak var Lright: UILabel!
     @IBOutlet weak var Lleft: UILabel!
     @IBOutlet weak var Ltop: UILabel!
@@ -27,7 +27,7 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
     @IBOutlet weak var reset: UIButton!
     @IBOutlet weak var lpf_val: UISegmentedControl!
     
-    private var interstitial: GADInterstitialAd?
+    private var interstitial: InterstitialAd?
     
     
     let motionManager = CMMotionManager()
@@ -61,22 +61,22 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
     let gravi_const:Double=9.80665
     
     /// Tells the delegate that the ad failed to present full screen content.
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Ad did fail to present full screen content.")
     }
     
     /// Tells the delegate that the ad will present full screen content.
-    func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    func adWillPresentFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("Ad will present full screen content.")
     }
     
     /// Tells the delegate that the ad dismissed full screen content.
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("Ad did dismiss full screen content.")
-        let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-9181296403272159/5298692048",
-                               request: request,
-                               completionHandler: { [self] ad, error in
+        let request = Request()
+        InterstitialAd.load(with:"ca-app-pub-9181296403272159/5298692048",
+                            request: request,
+                            completionHandler: { [self] ad, error in
             if let error = error {
                 print("Failed to load interstitial ad with error: \(error.localizedDescription)")
                 return
@@ -111,7 +111,7 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
         }else{
             bg_white()
             if interstitial != nil {
-                interstitial?.present(fromRootViewController: self)
+                interstitial?.present(from: self)
             } else {
                 print("Ad wasn't ready")
             }
@@ -123,10 +123,10 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         bg_black()
-        let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-9181296403272159/5298692048",
-                               request: request,
-                               completionHandler: { [self] ad, error in
+        let request = Request()
+        InterstitialAd.load(with:"ca-app-pub-9181296403272159/5298692048",
+                            request: request,
+                            completionHandler: { [self] ad, error in
             if let error = error {
                 print("Failed to load interstitial ad with error: \(error.localizedDescription)")
                 return
@@ -371,4 +371,3 @@ class ViewController: UIViewController, GADFullScreenContentDelegate{
     
     
 }
-
