@@ -1,0 +1,44 @@
+name: Upload to Appetize.io
+
+on:
+  push:
+    branches:
+      - main # mainブランチにプッシュされたら自動起動
+  workflow_dispatch: # マニュアル起動を許可
+
+jobs:
+  upload:
+    runs-on: macos-15
+
+    steps:
+      # 1. ソースコードのチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. 適切なXcodeバージョンを選択
+      - name: Select Xcode Version
+        run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
+
+      # 3. Ruby環境のセットアップ（Bundlerのキャッシュを有効化）
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundle-cache: true
+
+      # 4. 依存関係（FastlaneなどのGem）のインストール
+      - name: Install dependencies
+        run: bundle install
+
+      # 5. CocoaPods依存関係のインストール
+      - name: Install CocoaPods dependencies
+        run: pod install --repo-update
+
+      # 6. Fastlaneを実行してAppetize.ioへアップロード
+      - name: Upload to Appetize.io via Fastlane
+        env:
+          # Appetize.ioダッシュボードから取得したAPIトークン（必須）
+          APPETIZE_API_TOKEN: ${{ secrets.APPETIZE_API_TOKEN }}
+          # 既存アプリのpublic key（初回は不要、2回目以降に設定して上書き更新）
+          APPETIZE_PUBLIC_KEY: ${{ secrets.APPETIZE_PUBLIC_KEY }}
+        run: bundle exec fastlane release_to_appetize

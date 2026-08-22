@@ -1,6 +1,61 @@
 default_platform(:ios)
 
 platform :ios do
+  desc "Appetize.ioへシミュレータビルドをアップロードする"
+  lane :release_to_appetize do
+    derived_data_path = "build/DerivedData"
+
+    # シミュレータ向けビルド（コード署名不要）
+    sh(
+      "xcodebuild",
+      "-workspace", "../Gdisp.xcworkspace",
+      "-scheme", "app2",
+      "-sdk", "iphonesimulator",
+      "-configuration", "Release",
+      "-derivedDataPath", "../#{derived_data_path}",
+      "build-for-testing",
+      "CODE_SIGNING_ALLOWED=NO"
+    )
+
+    # ビルド成果物（.app）を探索
+    app_path = Dir["../#{derived_data_path}/**/Release-iphonesimulator/*.app"].first
+    UI.user_error!(".appが見つかりませんでした") unless app_path
+
+    zip_path = "../#{derived_data_path}/app.zip"
+
+    # .appをzipに圧縮
+    sh("zip", "-r", zip_path, app_path)
+
+    # Appetize APIトークンの確認
+    api_token = ENV["APPETIZE_API_TOKEN"]
+    UI.user_error!("APPETIZE_API_TOKEN が設定されていません") if api_token.nil? || api_token.empty?
+
+    public_key = ENV["APPETIZE_PUBLIC_KEY"]
+
+    # 新規作成 or 既存アプリの更新
+    if public_key.nil? || public_key.empty?
+      UI.message("Appetize.ioに新規アプリをアップロードします...")
+      sh(
+        "curl", "--http1.1",
+        "-X", "POST",
+        "https://api.appetize.io/v1/apps",
+        "-u", "#{api_token}:",
+        "-F", "file=@#{zip_path}",
+        "-F", "platform=ios"
+      )
+    else
+      UI.message("Appetize.ioの既存アプリ（#{public_key}）を更新します...")
+      sh(
+        "curl", "--http1.1",
+        "-X", "POST",
+        "https://api.appetize.io/v1/apps/#{public_key}",
+        "-u", "#{api_token}:",
+        "-F", "file=@#{zip_path}",
+        "-F", "platform=ios"
+      )
+    end
+  end
+
   desc "GitHub ActionsからTestFlightへ自動配信する"
   lane :release_to_app_store do
     
