@@ -10,8 +10,7 @@ on:
     branches: [ "main", master ]
   pull_request:
     branches: [ "main" ]  
-  schedule:
-    - cron: '30 06 * * *'
+
 
 permissions:
   contents: read
