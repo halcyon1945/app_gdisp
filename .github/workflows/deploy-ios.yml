@@ -37,7 +37,11 @@ jobs:
       - name: Install dependencies
         run: bundle install
 
-      # 6. Fastlaneを実行してTestFlightへ配信
+      # 6. CocoaPods依存関係のインストール（Podfile.lockとの同期）
+      - name: Install CocoaPods dependencies
+        run: pod install --repo-update
+
+      # 7. Fastlaneを実行してTestFlightへ配信
       - name: Run Fastlane
         env:
           APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
