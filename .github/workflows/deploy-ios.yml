@@ -52,14 +52,11 @@ jobs:
       - name: Install CocoaPods dependencies
         run: pod install --repo-update
 
-      # 8. Fastlaneを実行してTestFlightへ配信（並列ビルドを有効化）
+      # 8. Fastlaneを実行してTestFlightへ配信
       - name: Run Fastlane
         env:
           APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
           APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
           APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          # 並列コンパイルを有効化
-          SWIFT_COMPILATION_MODE: wholemodule
-          OTHER_SWIFT_FLAGS: -j$(sysctl -n hw.logicalcpu)
         run: bundle exec fastlane release_to_app_store
