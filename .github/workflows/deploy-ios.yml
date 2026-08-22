@@ -1,34 +1,42 @@
-
 name: iOS Deploy to TestFlight
 
 on:
   push:
     branches:
-      - main # mainブランチにプッシュされたら自動起動（お好みのブランチに変えてもOKです）
+      - main # mainブランチにプッシュされたら自動起動
 
 jobs:
   deploy:
-    runs-on: macos-14 # Apple Silicon (M1) 環境の最新Macを指定
+    # 💡 AppleのiOS 26要件を満たす最新のクラウドMac環境を指定
+    runs-on: macos-15
 
     steps:
+      # 1. ソースコードのチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. 適切なXcodeバージョンを選択（末尾のパスまで必須）
+      # 2. プライベートリポジトリから証明書（match）を安全にダウンロードするためのSSH設定
+      - name: Install SSH Key for Match repo
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}
+
+      # 3. 適切なXcodeバージョンを選択（Apple Store必須のiOS 26 SDKを含むバージョン）
       - name: Select Xcode Version
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
 
-      # 2. 証明書Gitへのアクセスを許可するためSSH鍵を設定（※必要に応じて）
-      # もしmatchリポジトリが一般公開されていない場合は、ここへの鍵設定かPersonal Access Tokenが必要になります。
-
-      # 3. Ruby環境のセットアップ
+      # 4. Ruby環境のセットアップ（Bundlerのキャッシュを有効化）
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundle-cache: true
 
-      # 4. Fastlaneの実行
+      # 5. 依存関係（FastlaneなどのGem）のインストール
+      - name: Install dependencies
+        run: bundle install
+
+      # 6. Fastlaneを実行してTestFlightへ配信
       - name: Run Fastlane
         env:
           APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
