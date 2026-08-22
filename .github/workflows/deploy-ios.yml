@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main # mainブランチにプッシュされたら自動起動
-
+  workflow_dispatch: # マニュアル起動を許可
+  
 jobs:
   deploy:
     # 💡 AppleのiOS 26要件を満たす最新のクラウドMac環境を指定
