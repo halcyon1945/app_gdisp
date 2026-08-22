@@ -28,7 +28,7 @@ platform :ios do
       workspace: "Gdisp.xcworkspace", 
       scheme: "app2",
       export_method: "app-store",
-      xcargs: "CODE_SIGN_STYLE=Manual"
+      xcargs: "CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='#{ENV["sigh_gdisp.indicate.app_appstore_profile-name"]}'"
     )
 
     # TestFlightへのアップロード
