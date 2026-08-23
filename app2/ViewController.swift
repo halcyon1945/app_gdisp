@@ -28,6 +28,7 @@ class ViewController: UIViewController, FullScreenContentDelegate{
     @IBOutlet weak var lpf_val: UISegmentedControl!
     
     private var interstitial: InterstitialAd?
+    private var timeFontPointSize: CGFloat = 0
     private let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
@@ -130,6 +131,9 @@ class ViewController: UIViewController, FullScreenContentDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let startupFont = time.attributedText?.attribute(.font, at: 0, effectiveRange: nil) as? UIFont
+        timeFontPointSize = startupFont?.pointSize ?? time.font.pointSize
+        time.font = UIFont.monospacedDigitSystemFont(ofSize: timeFontPointSize, weight: .regular)
         time.textAlignment = .right
         time.numberOfLines = 1
         time.allowsDefaultTighteningForTruncation = false

@@ -2,3 +2,4 @@
 *.lock
 *.plist
 !app2/Info.plist
+temp*
