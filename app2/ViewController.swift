@@ -28,6 +28,14 @@ class ViewController: UIViewController, FullScreenContentDelegate{
     @IBOutlet weak var lpf_val: UISegmentedControl!
     
     private var interstitial: InterstitialAd?
+    private let timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter
+    }()
     
     
     let motionManager = CMMotionManager()
@@ -122,6 +130,9 @@ class ViewController: UIViewController, FullScreenContentDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        time.textAlignment = .right
+        time.numberOfLines = 1
+        time.allowsDefaultTighteningForTruncation = false
         bg_black()
         let request = Request()
         InterstitialAd.load(with:"ca-app-pub-9181296403272159/5298692048",
@@ -274,16 +285,11 @@ class ViewController: UIViewController, FullScreenContentDelegate{
     
     @objc func disptimer() {
         let dt = Date()
-        let dateFormatter = DateFormatter()
-        let locale = Locale.current
-        let localeid = locale.identifier
         var disp_x: Double=0
         var disp_y: Double=0
         var disp_z: Double=0
         
-        // DateFormatter for local
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "dMMMMMHHmmss", options: 0, locale: Locale(identifier: localeid))
-        time.text = dateFormatter.string(from: dt)
+        time.text = timeFormatter.string(from: dt)
         
         
         disp_x = app_x - offsetx
