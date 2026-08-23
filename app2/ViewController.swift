@@ -30,10 +30,10 @@ class ViewController: UIViewController, FullScreenContentDelegate{
     private var interstitial: InterstitialAd?
     private let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale.current
         formatter.calendar = Calendar(identifier: .gregorian)
         formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "dd MMM, HH:mm:ss"
         return formatter
     }()
     
