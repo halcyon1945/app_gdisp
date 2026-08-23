@@ -3,7 +3,14 @@ name: iOS Deploy to TestFlight
 on:
   push:
     branches:
-      - main # mainブランチにプッシュされたら自動起動
+      - main
+    paths:
+      - 'app2/**'
+      - 'Gdisp.xcodeproj/**'
+      - 'Podfile'
+      - 'Podfile.lock'
+      - 'Gemfile'
+      - 'Gemfile.lock'
   workflow_dispatch: # マニュアル起動を許可
   
 jobs:

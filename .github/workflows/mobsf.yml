@@ -8,6 +8,13 @@ name: MobSF
 on:
   push:
     branches: [ "main", master ]
+    paths:
+      - 'app2/**'
+      - 'Gdisp.xcodeproj/**'
+      - 'Podfile'
+      - 'Podfile.lock'
+      - 'Gemfile'
+      - 'Gemfile.lock'
 
 
 permissions:

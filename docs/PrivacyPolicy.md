@@ -1,64 +1,58 @@
 **Privacy Policy**
 
-S.Shinohara built the Gdisp app as an Ad Supported app. This SERVICE is provided by S.Shinohara at no cost and is intended for use as is.
+S. Shinohara provides Gdisp free of charge as an ad-supported app. This policy explains how information is handled when you use the app.
 
-This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
+By using Gdisp, you agree to the collection and use of information described in this policy. Any personal information collected is used to provide and improve the service. It is not used or shared except as described here.
 
-If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
-
-The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at Gdisp unless otherwise defined in this Privacy Policy.
+The terms in this policy have the same meanings as those in the [Gdisp Terms & Conditions](terms_and_conditions.md), unless otherwise stated.
 
 **Information Collection and Use**
 
-For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to mail address,device type,iOS version. The information that I request will be retained on your device and is not collected by me in any way.
+For a better experience, the app may ask you to provide personally identifiable information, such as your email address, device type, or iOS version. Information requested by the app is retained on your device and is not collected by the developer.
 
-The app does use third-party services that may collect information used to identify you.
+Gdisp uses third-party services that may collect information that can be used to identify you. Their privacy policies are available here:
 
-Link to the privacy policy of third-party service providers used by the app
-
-*   [AdMob](https://support.google.com/admob/answer/6128543?hl=en)
+* [AdMob](https://support.google.com/admob/answer/6128543?hl=en)
 
 **Log Data**
 
-I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+If an error occurs while you use the app, third-party products may collect data and information from your device as log data. This may include your IP address, device name, operating system version, app configuration, the date and time of use, and other statistics.
 
 **Cookies**
 
-Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
+Cookies are small files commonly used as anonymous unique identifiers. Websites send them to your browser, where they are stored in your device's internal memory.
 
-This Service does not use these “cookies” explicitly. However, the app may use third-party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+Gdisp does not explicitly use cookies. However, third-party code and libraries used by the app may use cookies to collect information and improve their services. You may be able to accept or reject cookies and to receive notice when cookies are sent to your device. Refusing cookies may affect some features of the service.
 
 **Service Providers**
 
-I may employ third-party companies and individuals due to the following reasons:
+The developer may engage third-party companies and individuals for the following purposes:
 
-*   To facilitate our Service;
-*   To provide the Service on our behalf;
-*   To perform Service-related services; or
-*   To assist us in analyzing how our Service is used.
+* To facilitate the service;
+* To provide the service on the developer's behalf;
+* To perform service-related services; or
+* To help analyze how the service is used.
 
-I want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+These third parties may have access to personal information while performing tasks on the developer's behalf. They are required not to disclose or use it for any other purpose.
 
 **Security**
 
-I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
+The developer takes reasonable commercially available measures to protect personal information. However, no method of transmission over the internet or electronic storage is completely secure or reliable, and absolute security cannot be guaranteed.
 
 **Links to Other Sites**
 
-This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+Gdisp may contain links to other websites. Following a third-party link will take you to a site that is not operated by the developer. Please review the privacy policy of each external site. The developer has no control over and accepts no responsibility for the content, privacy policies, or practices of third-party sites or services.
 
-**Children’s Privacy**
+**Children's Privacy**
 
-These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13 years of age. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do the necessary actions.
+Gdisp is not intended for anyone under 13. The developer does not knowingly collect personally identifiable information from children under 13. If the developer becomes aware that a child under 13 has provided personal information, it will be deleted from the developer's servers. Parents or guardians who believe a child has provided personal information should contact the developer.
 
 **Changes to This Privacy Policy**
 
-I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.
+This policy may be updated from time to time. Please review this page periodically for changes. Updates will be posted on this page.
 
-This policy is effective as of 2022-08-15
+This policy is effective as of 2022-08-15.
 
 **Contact Us**
 
-If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at https://forms.gle/8qG3hEu8UAZsDXZX9.
-
-This privacy policy page was created at [privacypolicytemplate.net](https://privacypolicytemplate.net) and modified/generated by [App Privacy Policy Generator](https://app-privacy-policy-generator.nisrulz.com/)
+For questions or suggestions about this Privacy Policy, please use the [support form](https://forms.gle/8qG3hEu8UAZsDXZX9).
